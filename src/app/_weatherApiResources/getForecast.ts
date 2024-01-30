@@ -3,7 +3,7 @@ import { ForecastResProps } from '../@types/forecast'
 
 type GetWeatherForecastInput = {
   q: string
-  days?: number // range 14 fro
+  days?: number // range 14
   options?: RequestInit
 }
 

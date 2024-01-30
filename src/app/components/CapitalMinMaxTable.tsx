@@ -1,23 +1,31 @@
-export function CapitalMinMaxTable() {
+import { GetForecastFromCapitalsMinMaxTempMinMaxTempRes } from '../_weatherApiResources/getTodayForecastFromCapitalsMinMaxTemp'
+
+type CapitalMinMaxTableProps = {
+  rows: GetForecastFromCapitalsMinMaxTempMinMaxTempRes[]
+}
+
+export function CapitalMinMaxTable({ rows }: CapitalMinMaxTableProps) {
   return (
     <table>
       <thead>
         <tr>
           <th scope="col" className="font-thin text-left px-2">
-            min
+            Min
           </th>
           <th scope="col" className="font-thin text-left px-2">
-            máx
+            Máx
           </th>
           <th scope="col" className="px-2"></th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td className="px-2 font-bold">26ºC</td>
-          <td className="px-2 font-bold">36ºC</td>
-          <td className="px-2 font-bold">São Paulo</td>
-        </tr>
+        {rows.map((r) => (
+          <tr key={r.name}>
+            <td className="px-2 font-bold">{r.min}ºC</td>
+            <td className="px-2 font-bold">{r.max}ºC</td>
+            <td className="px-2 font-bold">{r.name}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   )

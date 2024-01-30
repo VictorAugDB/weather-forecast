@@ -1,4 +1,5 @@
 import type { Config } from 'tailwindcss'
+import colors from 'tailwindcss/colors'
 
 const config: Config = {
   content: [
@@ -11,6 +12,9 @@ const config: Config = {
     extend: {
       maxWidth: {
         'search-input': '436px',
+      },
+      borderColor: {
+        'border-color': colors.orange[700],
       },
       backgroundImage: {
         background: 'var(--background)',

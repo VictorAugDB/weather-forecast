@@ -5,7 +5,7 @@ type GetForecastFromCapitalsMinMaxTempMinMaxTempInput = {
   options?: RequestInit
 }
 
-type GetForecastFromCapitalsMinMaxTempMinMaxTempRes = {
+export type GetForecastFromCapitalsMinMaxTempMinMaxTempRes = {
   name: string
   min: number
   max: number
@@ -17,9 +17,9 @@ export async function getTodayForecastFromCapitalsMinMaxTempMinMaxTemp({
   GetForecastFromCapitalsMinMaxTempMinMaxTempRes[]
 > {
   const res = await Promise.all(
-    capitals.map((c) =>
+    Object.keys(capitals).map((capitalName) =>
       getForecast({
-        q: c,
+        q: capitalName,
         options: {
           next: {
             revalidate: 60 * 5, // 5min
@@ -31,7 +31,7 @@ export async function getTodayForecastFromCapitalsMinMaxTempMinMaxTemp({
   )
 
   const minMaxCapitals = res.map((r) => ({
-    name: r.location.name,
+    name: capitals[r.location.name.toLocaleLowerCase()],
     min: r.forecast.forecastday[0].day.mintemp_c,
     max: r.forecast.forecastday[0].day.maxtemp_c,
   }))

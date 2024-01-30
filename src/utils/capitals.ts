@@ -1,29 +1,42 @@
-export const capitals = [
-  'Rio Branco',
-  'Maceió',
-  'Macapá',
-  'Manaus',
-  'Salvador',
-  'Fortaleza',
+const capitalsBase = [
+  'São Paulo',
+  'Rio de Janeiro',
   'Brasília',
-  'Vitória',
-  'Goiânia',
-  'São Luís',
-  'Cuiabá',
-  'Campo Grande',
+  'Fortaleza',
+  'Salvador',
   'Belo Horizonte',
-  'Belém',
-  'João Pessoa',
+  'Manaus',
   'Curitiba',
   'Recife',
-  'Teresina',
-  'Rio de Janeiro',
-  'Natal',
+  'Goiânia',
   'Porto Alegre',
-  'Porto Velho',
-  'Boa Vista',
-  'Florianópolis',
-  'São Paulo',
+  'Belém',
+  'São Luís',
+  'Maceió',
+  'Campo Grande',
+  'Teresina',
+  'João Pessoa',
+  'Natal',
+  'Cuiabá',
   'Aracaju',
+  'Florianópolis',
+  'Porto Velho',
+  'Macapá',
+  'Boa Vista',
+  'Rio Branco',
+  'Vitória',
   'Palmas',
 ]
+
+export const capitals = capitalsBase.reduce(
+  (acc, curr) => {
+    acc[
+      curr
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase()
+    ] = curr
+    return acc
+  },
+  {} as Record<string, string>,
+)
