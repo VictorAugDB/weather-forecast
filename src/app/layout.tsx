@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
+import { twMerge } from 'tailwind-merge'
 import './globals.css'
 
 const inter = Roboto({
   subsets: ['latin'],
   display: 'swap',
-  weight: ['400', '500', '700'],
+  weight: ['100', '400', '500', '700'],
 })
 
 export const metadata: Metadata = {
@@ -20,7 +21,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={twMerge(inter.className, 'flex flex-col')}>
+        {children}
+      </body>
     </html>
   )
 }

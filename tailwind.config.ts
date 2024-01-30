@@ -9,6 +9,9 @@ const config: Config = {
   mode: 'jit',
   theme: {
     extend: {
+      maxWidth: {
+        'search-input': '436px',
+      },
       backgroundImage: {
         background: 'var(--background)',
       },
