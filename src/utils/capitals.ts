@@ -1,3 +1,5 @@
+import { normalizeRemoveDiacritics } from './normalizeRemoveDiacritics'
+
 const capitalsBase = [
   'São Paulo',
   'Rio de Janeiro',
@@ -30,12 +32,7 @@ const capitalsBase = [
 
 export const capitals = capitalsBase.reduce(
   (acc, curr) => {
-    acc[
-      curr
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLocaleLowerCase()
-    ] = curr
+    acc[normalizeRemoveDiacritics(curr).toLocaleLowerCase()] = curr
     return acc
   },
   {} as Record<string, string>,

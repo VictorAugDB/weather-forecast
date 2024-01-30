@@ -1,4 +1,5 @@
 import { GetForecastFromCapitalsMinMaxTempMinMaxTempRes } from '../_weatherApiResources/getTodayForecastFromCapitalsMinMaxTemp'
+import { motion } from 'framer-motion'
 
 type CapitalMinMaxTableProps = {
   rows: GetForecastFromCapitalsMinMaxTempMinMaxTempRes[]
@@ -6,7 +7,7 @@ type CapitalMinMaxTableProps = {
 
 export function CapitalMinMaxTable({ rows }: CapitalMinMaxTableProps) {
   return (
-    <table>
+    <motion.table layout>
       <thead>
         <tr>
           <th scope="col" className="font-thin text-left px-2">
@@ -27,6 +28,6 @@ export function CapitalMinMaxTable({ rows }: CapitalMinMaxTableProps) {
           </tr>
         ))}
       </tbody>
-    </table>
+    </motion.table>
   )
 }

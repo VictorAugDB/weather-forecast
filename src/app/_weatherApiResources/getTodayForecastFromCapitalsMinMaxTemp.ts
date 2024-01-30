@@ -22,6 +22,7 @@ export async function getTodayForecastFromCapitalsMinMaxTempMinMaxTemp({
         q: capitalName,
         options: {
           next: {
+            tags: [`${capitalName}_1`],
             revalidate: 60 * 5, // 5min
           },
           ...options,

@@ -10,6 +10,9 @@ const config: Config = {
   mode: 'jit',
   theme: {
     extend: {
+      padding: {
+        layout: '0.5rem',
+      },
       maxWidth: {
         'search-input': '436px',
       },

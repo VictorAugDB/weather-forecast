@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import { Roboto } from 'next/font/google'
 import { twMerge } from 'tailwind-merge'
+import { ToastContainer } from 'react-toastify'
 import './globals.css'
+import 'react-toastify/dist/ReactToastify.css'
 
 const inter = Roboto({
   subsets: ['latin'],
@@ -23,6 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={twMerge(inter.className, 'flex flex-col')}>
         {children}
+        <ToastContainer />
       </body>
     </html>
   )
