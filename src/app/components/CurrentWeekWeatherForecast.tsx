@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowDown, ArrowUp } from 'lucide-react'
+import { ArrowDown, ArrowUp, X } from 'lucide-react'
 import { GetCurrentWeekForecastData } from '../_weatherApiResources/getCurrentWeekForecastData'
 import { SearchInput } from './SearchInput'
 import { useRef, useState } from 'react'
@@ -63,6 +63,12 @@ export function CurrentWeekWeatherForecast() {
     }
   }
 
+  function handleClearData() {
+    setLocation(null)
+    setCurrentWeekWeatherForecast([])
+    setCurrentWeatherForecastIdx(null)
+  }
+
   return (
     <>
       <AnimatePresence>
@@ -80,7 +86,15 @@ export function CurrentWeekWeatherForecast() {
               x: '-100%',
               opacity: 0,
             }}
-            className="px-2 p-4 md:px-4 space-y-4 bg-stone-200 divide-y-2 divide-orange-400 text-stone-600"
+            exit={{
+              x: '-100%',
+              opacity: 0,
+              transition: {
+                duration: 0.5,
+                ease: 'easeInOut',
+              },
+            }}
+            className="px-2 p-4 md:px-4 space-y-4 bg-stone-200 divide-y-2 divide-orange-400 text-stone-600 relative"
           >
             <motion.section
               key={currentWeatherForecast.date.toISOString()}
@@ -95,6 +109,13 @@ export function CurrentWeekWeatherForecast() {
                 delay: 0.2,
               }}
             >
+              <button
+                onClick={handleClearData}
+                className="rounded-full hover:bg-stone-300 text-orange-400 p-2 absolute right-2 md:right-4 top-2 md:top-4"
+              >
+                <X />
+              </button>
+
               <h4 ref={titleRef}>
                 {location.name}, {generateAcronym(location.region)} -{' '}
                 {location.country}
@@ -139,7 +160,7 @@ export function CurrentWeekWeatherForecast() {
                   </span>
                 </p>
                 <p className="font-thin">
-                  Humidade{' '}
+                  Umidade{' '}
                   <span className="font-bold">
                     {currentWeatherForecast.avghumidity}%
                   </span>
