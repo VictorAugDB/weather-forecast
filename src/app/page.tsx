@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <main className="flex-1 flex flex-col items-center justify-center divide-y-2 divide-white gap-16 lg:p-layout">
       <div className="flex flex-col gap-16 items-center">
-        <h1 className="text-white">Previsão do tempo</h1>
+        <h1 className="pl-8 pt-8 text-white">Previsão do tempo</h1>
         <div className="flex flex-col gap-4 items-center w-full">
           <CurrentWeekWeatherForecast />
         </div>
