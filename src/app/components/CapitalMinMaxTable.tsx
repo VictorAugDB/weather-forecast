@@ -7,7 +7,7 @@ type CapitalMinMaxTableProps = {
 
 export function CapitalMinMaxTable({ rows }: CapitalMinMaxTableProps) {
   return (
-    <motion.table layout>
+    <table>
       <thead>
         <tr>
           <th scope="col" className="font-thin text-left px-2">
@@ -22,12 +22,12 @@ export function CapitalMinMaxTable({ rows }: CapitalMinMaxTableProps) {
       <tbody>
         {rows.map((r) => (
           <tr key={r.name}>
-            <td className="px-2 font-bold">{r.min}ºC</td>
-            <td className="px-2 font-bold">{r.max}ºC</td>
-            <td className="px-2 font-bold">{r.name}</td>
+            <td className="p-2 font-bold">{r.min}ºC</td>
+            <td className="p-2 font-bold">{r.max}ºC</td>
+            <td className="p-2 font-bold">{r.name}</td>
           </tr>
         ))}
       </tbody>
-    </motion.table>
+    </table>
   )
 }

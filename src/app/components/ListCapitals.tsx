@@ -4,7 +4,8 @@ import { ComponentProps, ReactNode, useState } from 'react'
 import { GetForecastFromCapitalsMinMaxTempMinMaxTempRes } from '../_weatherApiResources/getTodayForecastFromCapitalsMinMaxTemp'
 import { CapitalMinMaxTable } from './CapitalMinMaxTable'
 import { twMerge } from 'tailwind-merge'
-import { LayoutGroup } from 'framer-motion'
+import { LayoutGroup, motion } from 'framer-motion'
+import { Rows } from 'lucide-react'
 
 type ListCapitalsProps = {
   capitals: GetForecastFromCapitalsMinMaxTempMinMaxTempRes[]
@@ -28,15 +29,16 @@ export function ListCapitals({ capitals }: ListCapitalsProps) {
 
   return (
     <>
-      <div
+      <motion.div
         data-state={firstTableRows.length > 5 ? 'open' : 'close'}
         className="flex gap-10 flex-wrap overflow-hidden"
+        key={firstTableRows.length}
+        initial={{ opacity: 0.5, height: 0 }}
+        animate={{ opacity: 1, height: 'auto' }}
       >
-        <LayoutGroup>
-          <CapitalMinMaxTable rows={firstTableRows} />
-          <CapitalMinMaxTable rows={secondTableRows} />
-        </LayoutGroup>
-      </div>
+        <CapitalMinMaxTable rows={firstTableRows} />
+        <CapitalMinMaxTable rows={secondTableRows} />
+      </motion.div>
 
       {firstTableRows.length > 5 ? (
         <Button onClick={handleHide}>Hide all capitals</Button>
