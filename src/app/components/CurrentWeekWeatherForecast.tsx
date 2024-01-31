@@ -27,8 +27,11 @@ export function CurrentWeekWeatherForecast() {
       ? currentWeekWeatherForecast[currentWeatherForecastIdx]
       : null
 
+  const [isLoading, setIsLoading] = useState(false)
+
   async function handleSearch(city: string) {
     try {
+      setIsLoading(true)
       const res = await fetch(
         `/api/week-forecast?city=${normalizeRemoveDiacritics(city).toLocaleLowerCase()}`,
       )
@@ -52,6 +55,8 @@ export function CurrentWeekWeatherForecast() {
         style: { backgroundColor: '#ef4444', color: 'white' },
       })
     }
+
+    setIsLoading(false)
   }
 
   function handleChangeDate(idx: number) {
@@ -194,10 +199,14 @@ export function CurrentWeekWeatherForecast() {
       </AnimatePresence>
       <div className="px-2 w-full flex justify-center">
         <SearchInput
+          disableSearch={isLoading}
           handleSearch={handleSearch}
           placeholder="Insira aqui o nome da cidade"
         />
       </div>
+      {isLoading ? (
+        <p className="animate-ellipsis-dot text-base font-medium ">Buscando</p>
+      ) : null}
     </>
   )
 }

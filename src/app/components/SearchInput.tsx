@@ -4,10 +4,12 @@ import { twMerge } from 'tailwind-merge'
 
 type SearchInputProps = Omit<ComponentProps<'input'>, 'name'> & {
   handleSearch: (q: string) => void
+  disableSearch?: boolean
 }
 
 export function SearchInput({
   className,
+  disableSearch = false,
   handleSearch,
   ...props
 }: SearchInputProps) {
@@ -28,7 +30,10 @@ export function SearchInput({
         )}
         {...props}
       />
-      <button className="hover:bg-gray-300 transition-colors h-full px-4">
+      <button
+        disabled={disableSearch}
+        className="hover:bg-gray-300 transition-colors h-full px-4 disabled:cursor-not-allowed"
+      >
         <Search className="text-gray-600" />
       </button>
     </form>
